@@ -16,6 +16,10 @@ function init(){
 	var video = document.getElementById("show");
 	var app = document.getElementById("app");
 
+	if (!navigator) {
+		return alert('连 navigator 都没有');
+	}
+
 	if (!navigator.getUserMedia) {
 		return alert('navigator.getUserMedia 不存在\n navigator.userAgent: ' + navigator.userAgent);
 	}
