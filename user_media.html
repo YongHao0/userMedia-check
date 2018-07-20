@@ -20,7 +20,7 @@ function init(){
 		return alert('navigator.getUserMedia 不存在\n navigator.userAgent: ' + navigator.userAgent);
 	}
 	navigator.getUserMedia({audio:true, video:true}, gotStream, function(err){
-		alert("获取摄像头失败\n" + err);
+		alert("获取摄像头失败\n" + err + '\n navigator.userAgent: ' + navigator.userAgent);
 	});
 
 	function gotStream(stream) {
