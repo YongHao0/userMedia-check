@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>user media</title>
+</head>
+
+<body>
+
+<section id="app" hidden>
+	<video id="show" autoplay></video>
+</section>
+
+<script>
+function init(){
+	var video = document.getElementById("show");
+	var app = document.getElementById("app");
+
+	if (!navigator.getUserMedia) {
+		return alert('navigator.getUserMedia 不存在\n navigator.userAgent: ' + navigator.userAgent);
+	}
+	navigator.getUserMedia({audio:true, video:true}, gotStream, function(err){
+		alert("获取摄像头失败\n" + err);
+	});
+
+	function gotStream(stream) {
+		video.src = URL.createObjectURL(stream);
+		app.hidden = false;
+	}
+}
+</script>
+
+<script>
+init();	
+</script>
+</body>
+</html>
