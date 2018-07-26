@@ -18,7 +18,9 @@ function init(){
 
 	if (!navigator) {
 		return alert('连 navigator 都没有');
-	}
+	} else {
+        alert('navigator.userAgent: ' + navigator.userAgent);
+    }
 
 	if (!navigator.getUserMedia) {
 		return alert('navigator.getUserMedia 不存在\n navigator.userAgent: ' + navigator.userAgent);
