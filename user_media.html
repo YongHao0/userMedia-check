@@ -23,7 +23,9 @@ function init(){
     var video = document.getElementById("show");
     var app = document.getElementById("app");
     if (!navigator.getUserMedia) {
-        return alert('没有 navigator.getUserMedia.\n navigator.userAgent: ' + navigator.userAgent);
+        alert('没有 navigator.getUserMedia.\n navigator.userAgent: ' + navigator.userAgent);
+        alert('是否有 mediaDevices.getUserMedia :', !!navigator.mediaDevices.getUserMedia)
+        return;
     }
     navigator.getUserMedia({audio:true, video:true}, function(stream) {
         alert('get stream success: ' + stream);
