@@ -16,6 +16,10 @@ function init(){
 	var video = document.getElementById("show");
 	var app = document.getElementById("app");
 
+    alert('test alert');
+
+    alert('navigator is ' + JSON.stringify(navigator));
+
     alert('navigator.userAgent is : ' + navigator.userAgent);
 	if (!navigator) {
 		return alert('连 navigator 都没有');
