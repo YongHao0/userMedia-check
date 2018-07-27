@@ -22,7 +22,12 @@ function init(){
     var video = document.getElementById("show");
     var app = document.getElementById("app");
     navigator.getUserMedia({audio:true, video:true}, function(stream) {
-        video.srcObject = stream;
+        try {
+            video.srcObject = stream;
+        } catch(e) {
+            alert('srcObject error: ' + err.name + '\n' +  err.message)
+            video.src = URL.createObjectURL(stream);
+        }
         app.hidden = false;
     }, function(err) {
         alert('err: ' + err.name + '\n' +  err.message)
