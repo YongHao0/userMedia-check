@@ -41,7 +41,11 @@ function init(){
 </script>
 
 <script>
-init();	
+window.onload = function() {
+    setTimeout(function() {
+        init(); 
+    }, 2000);
+};
 </script>
 </body>
 </html>
