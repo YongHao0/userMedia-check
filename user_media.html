@@ -8,43 +8,26 @@
 <body>
 
 <section id="app" hidden>
-	<video id="show" autoplay></video>
+    <video id="show" autoplay></video>
 </section>
 
 <script>
-var video = document.getElementById("show");
-var app = document.getElementById("app");
-
-if (navigator.mediaDevices === undefined) {
-      navigator.mediaDevices = {};
-}
-if (navigator.mediaDevices.getUserMedia === undefined) {
-    navigator.mediaDevices.getUserMedia = function(constraints) {
-        var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        if (!getUserMedia) {
-            alert('没有这个方法');
-            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-        }
-        return new Promise(function(resolve, reject) {
-            getUserMedia.call(navigator, constraints, resolve, reject);
-        })
-    }
-}
-
 function init(){
-	navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(steam) {
-        var video = document.querySelector('video');
-        try {
-            video.srcObject = steam;
-        } catch(e) {
-            video.src = window.URL.createObjectURL(steam);
-        }
-        video.onloadedmetadata = function(e) {
-            video.play();
-        };
-    }).catch(function(err) {
-        alert('失败: ' + err.name + ": " + err.message);
+    var video = document.getElementById("show");
+    var app = document.getElementById("app");
+    // navigator.getUserMedia({audio:true, video:true}, gotStream, function(err){
+    //     console.log("获取摄像头失败");
+    //     console.log(err);
+    // });
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
+        video.srcObject = stream;
+        app.hidden = false;
     });
+    // function gotStream(stream) {
+    //     var URL = window.webkitURL ? window.webkitURL : window.URL;
+    //     video.src = URL.createObjectURL(stream);
+    //     app.hidden = false;
+    // }
 }
 init();
 </script>
