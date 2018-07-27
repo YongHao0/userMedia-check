@@ -22,6 +22,9 @@
 function init(){
     var video = document.getElementById("show");
     var app = document.getElementById("app");
+    if (!navigator.getUserMedia) {
+        return alert('没有 navigator.getUserMedia');
+    }
     navigator.getUserMedia({audio:true, video:true}, function(stream) {
         alert('get stream success: ' + stream);
         try {
