@@ -21,16 +21,18 @@
 function init(){
     var video = document.getElementById("show");
     var app = document.getElementById("app");
-    // navigator.getUserMedia({audio:true, video:true}, gotStream, function(err){
-    //     console.log("获取摄像头失败");
-    //     console.log(err);
-    // });
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
+    navigator.getUserMedia({audio:true, video:true}, function(stream) {
         video.srcObject = stream;
         app.hidden = false;
-    }).catch(function(err) {
+    }, function(err) {
         alert('err: ' + err.name + '\n' +  err.message)
     });
+    // navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
+    //     video.srcObject = stream;
+    //     app.hidden = false;
+    // }).catch(function(err) {
+    //     alert('err: ' + err.name + '\n' +  err.message)
+    // });
     // function gotStream(stream) {
     //     var URL = window.webkitURL ? window.webkitURL : window.URL;
     //     video.src = URL.createObjectURL(stream);
