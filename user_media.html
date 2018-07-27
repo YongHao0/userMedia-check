@@ -34,9 +34,9 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
 function init(){
 	navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(steam) {
         var video = document.querySelector('video');
-        if ("srcObject" in video){
+        try {
             video.srcObject = stream;
-        } else {
+        } catch(e) {
             video.src = window.URL.createObjectURL(stream);
         }
         video.onloadedmetadata = function(e) {
