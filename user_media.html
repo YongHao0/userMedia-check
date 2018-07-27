@@ -28,6 +28,8 @@ function init(){
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
         video.srcObject = stream;
         app.hidden = false;
+    }).catch(function(err) {
+        alert('err: ' + err.name + '\n' +  err.message)
     });
     // function gotStream(stream) {
     //     var URL = window.webkitURL ? window.webkitURL : window.URL;
