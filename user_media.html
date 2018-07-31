@@ -27,7 +27,7 @@ function init(){
         alert('是否有 mediaDevices.getUserMedia :' + !!navigator.mediaDevices.getUserMedia)
         return;
     }
-    navigator.getUserMedia({audio:true, video:true}, function(stream) {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 1280, height: 720 } }).then(function(stream) {
         alert('get stream success: ' + stream);
         try {
             video.srcObject = stream;
@@ -35,10 +35,15 @@ function init(){
             alert('srcObject error: ' + err.name + '\n' +  err.message)
             video.src = URL.createObjectURL(stream);
         }
-        // app.hidden = false;
-    }, function(err) {
+    }).catch(function(err) {
         alert('err: ' + err.name + '\n' +  err.message)
     });
+    // navigator.getUserMedia({audio:true, video:true}, function(stream) {
+        
+    //     // app.hidden = false;
+    // }, function(err) {
+        
+    // });
     // navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
     //     video.srcObject = stream;
     //     app.hidden = false;
