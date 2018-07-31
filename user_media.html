@@ -27,17 +27,23 @@ function init(){
         alert('是否有 mediaDevices.getUserMedia :' + !!navigator.mediaDevices.getUserMedia)
         return;
     }
-    navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 1280, height: 720 } }).then(function(stream) {
-        alert('get stream success: ' + stream);
-        try {
+    // var getUserMedia = navigator.getUserMedia
+    //                     || navigator.webkitGetUserMedia
+    //                     || navigator.mozGetUserMedia
+    //                     || navigator.msGetUserMedia;
+
+
+    navigator.getUserMedia({audio: true, video: true}, function(stream) {
+        if ('srcObject' in video) {
             video.srcObject = stream;
-        } catch(e) {
-            alert('srcObject error: ' + err.name + '\n' +  err.message)
-            video.src = URL.createObjectURL(stream);
+        } else {
+            video.src = window.URL && window.URL.createObjectURL(stream) || stream;
         }
-    }).catch(function(err) {
+        video.play();
+    }, function(err) {
         alert('err: ' + err.name + '\n' +  err.message)
     });
+    
     // navigator.getUserMedia({audio:true, video:true}, function(stream) {
         
     //     // app.hidden = false;
